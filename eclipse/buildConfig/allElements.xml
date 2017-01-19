@@ -52,10 +52,6 @@
             <property name="id" value="com.android.ide.eclipse.tests" />
         </ant>
 
-        <ant antfile="${genericTargets}" target="${target}">
-            <property name="type" value="feature" />
-            <property name="id" value="com.android.ide.eclipse.pdt" />
-        </ant>
      </target>
 
      <!-- ===================================================================== -->
@@ -86,10 +82,6 @@
      </target>
 
     <target name="assemble.com.android.ide.eclipse.tests">
-        <ant antfile="${assembleScriptName}" dir="${buildDirectory}"/>
-    </target>
-
-    <target name="assemble.com.android.ide.eclipse.pdt">
         <ant antfile="${assembleScriptName}" dir="${buildDirectory}"/>
     </target>
 
