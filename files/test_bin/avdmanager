@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo avdmanager $@ >&2
+
+for arg in $@; do
+  if [[ $arg == "--fail" ]]; then
+    exit 1
+  fi
+done
+exit 0
