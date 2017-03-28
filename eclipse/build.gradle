@@ -53,6 +53,7 @@ def artifacts = [
         'annotations'         : "com.android.tools:annotations:$ext.baseVersion",
         'common'              : "com.android.tools:common:$ext.baseVersion",
         'dvlib'               : "com.android.tools:dvlib:$ext.baseVersion",
+        'hierarchyviewer2lib' : "com.android.tools:hierarchyviewer2lib:$ext.baseVersion",
         'sdk-common'          : "com.android.tools:sdk-common:$ext.baseVersion",
         'sdklib'              : "com.android.tools:sdklib:$ext.baseVersion",
         'swtmenubar'          : "com.android.tools:swtmenubar:$ext.baseVersion",
@@ -145,7 +146,8 @@ copydeps.dependsOn {
     ":base:builder-model:publishLocal",
     ":base:repository:publishLocal",
     ":swt:uiautomatorviewer:publishLocal",
-    ":base:lint-api:publishLocal"
+    ":base:lint-api:publishLocal",
+    ":swt:hierarchyviewer2lib:publishLocal"
   ]
 }
 
