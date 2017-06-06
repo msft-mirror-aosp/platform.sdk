@@ -93,38 +93,40 @@ dependencies {
     compile artifacts.values()
 }
 
-task copydeps << {
-    // get the resolved dependencies from the compile configuration
-    def resolvedDependencies = configurations.compile.resolvedConfiguration.firstLevelModuleDependencies
-    // generate a map from "xy.jar" -> "/path/to/xy-1.0.jar"
-    def artifactMap = [:]
-    resolvedDependencies.each { dependency ->
-        def dependencyId = dependency.getName()
-        def artifactName = artifacts.find{ it.value == dependencyId}?.key
+task copydeps {
+    doLast {
+        // get the resolved dependencies from the compile configuration
+        def resolvedDependencies = configurations.compile.resolvedConfiguration.firstLevelModuleDependencies
+        // generate a map from "xy.jar" -> "/path/to/xy-1.0.jar"
+        def artifactMap = [:]
+        resolvedDependencies.each { dependency ->
+            def dependencyId = dependency.getName()
+            def artifactName = artifacts.find{ it.value == dependencyId}?.key
 
-        // get the jar file corresponding to the dependency
-        def artifact = getArtifact(dependency)
-        artifactMap.put(artifactName + ".jar", artifact)
-    }
-
-    project.adtPlugins.each { File pluginFile ->
-        def manifestDeps = getManifestDependencies(new File(pluginFile, "META-INF/MANIFEST.MF"))
-        logger.info("Dependencies for " + pluginFile.toString() + ": " + manifestDeps.join(","))
-
-        File dest = new File(pluginFile, "libs")
-        if (!manifestDeps.isEmpty() && !dest.isDirectory()) {
-            dest.mkdirs()
+            // get the jar file corresponding to the dependency
+            def artifact = getArtifact(dependency)
+            artifactMap.put(artifactName + ".jar", artifact)
         }
 
-        manifestDeps.each {
-            if (!artifactMap.containsKey(it)) {
-                throw new RuntimeException("No resolved artifact for: " + it + ", required for: "
-                        + pluginFile.getPath())
+        project.adtPlugins.each { File pluginFile ->
+            def manifestDeps = getManifestDependencies(new File(pluginFile, "META-INF/MANIFEST.MF"))
+            logger.info("Dependencies for " + pluginFile.toString() + ": " + manifestDeps.join(","))
+
+            File dest = new File(pluginFile, "libs")
+            if (!manifestDeps.isEmpty() && !dest.isDirectory()) {
+                dest.mkdirs()
             }
 
-            String destName = artifactMap.get(it)
-            logger.info("\tCopying " + destName + " to " + dest)
-            ant.copy(file: destName, tofile: new File(dest, it))
+            manifestDeps.each {
+                if (!artifactMap.containsKey(it)) {
+                    throw new RuntimeException("No resolved artifact for: " + it + ", required for: "
+                            + pluginFile.getPath())
+                }
+
+                String destName = artifactMap.get(it)
+                logger.info("\tCopying " + destName + " to " + dest)
+                ant.copy(file: destName, tofile: new File(dest, it))
+            }
         }
     }
 }
@@ -152,14 +154,16 @@ copydeps.dependsOn {
 }
 
 // unzip eclipse prebuilts into the out folder to create a target platform for the build
-task unzipTargetPlatform << {
-    File targetDir = new File(outFile, "/host/maven/target").getCanonicalFile()
-    targetDir.mkdirs()
+task unzipTargetPlatform {
+    doLast {
+        File targetDir = new File(outFile, "/host/maven/target").getCanonicalFile()
+        targetDir.mkdirs()
 
-    project.targetComponents.each { String k, File v ->
-        File d = new File(targetDir, k)
-        logger.info("Unzipping " + v.getPath() + " into: " + d.getPath())
-        ant.unzip(src: v, dest: d)
+        project.targetComponents.each { String k, File v ->
+            File d = new File(targetDir, k)
+            logger.info("Unzipping " + v.getPath() + " into: " + d.getPath())
+            ant.unzip(src: v, dest: d)
+        }
     }
 }
 
