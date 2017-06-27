@@ -18,11 +18,10 @@ package com.android.ide.eclipse.gltrace.state;
 
 import com.android.annotations.NonNull;
 import com.android.annotations.Nullable;
-import com.android.utils.SdkUtils;
 
 public class StatePrettyPrinter {
     private static final int SPACES_PER_INDENT = 4;
-    private final String mLineSeparator = SdkUtils.getLineSeparator();
+    private final String mLineSeparator = System.lineSeparator();
 
     private StringBuilder mSb = new StringBuilder(1000);
     private int mIndentLevel = 0;
