@@ -162,6 +162,9 @@ exit /b 1
       set args=!args! ndk-bundle
     ) else if "!filter:~0,8!"=="android-" (
       set args=!args! platforms;!filter!
+    ) else if "!filter:~0,6!"=="extra-" (
+      set tmp=!filter:extra-=extras-!
+      set args=!args! !tmp:-=;!
     ) else (
       echo Filter !filter! is not supported
       exit /b 1
