@@ -32,9 +32,9 @@ call:assert_generated_command_equals "sdkmanager --no_https --update" "update sd
 call:assert_generated_command_equals "sdkmanager --no_https --update" "update sdk --no-https"
 call:assert_generated_command_equals "sdkmanager --proxy_port=1234 --proxy=http --proxy_host=foo --update" "update sdk --proxy-port 1234 --proxy-host foo"
 call:assert_generated_command_equals ^
-    "sdkmanager tools platform-tools docs lldb;1.0 build-tools;2.3 ndk-bundle platforms;android-25 platforms;android-O" ^
-    "update sdk -t tool,platform-tool,doc,lldb-1.0,build-tools-2.3,ndk,android-25,android-O"
-call:assert_generated_command_equals "sdkmanager tools platform-tools" "update sdk -t tools,platform-tools"
+    "sdkmanager tools platform-tools docs lldb;1.0 build-tools;2.3 ndk-bundle platforms;android-25 platforms;android-O extras;google;play_billing extras;android;m2repository" ^
+    "update sdk -t tool,platform-tool,doc,lldb-1.0,build-tools-2.3,ndk,android-25,android-O,extra-google-play_billing,extra-android-m2repository"
+call:assert_generated_command_equals "sdkmanager tools platform-tools" "update sdk -t tools,platform-tools" 
 call:assert_fails "update sdk -t bogus"
 call:assert_fails "update sdk bogus"
 call:assert_fails "update sdk --fail"
