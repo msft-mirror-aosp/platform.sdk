@@ -67,7 +67,7 @@ def artifacts = [
         'asm-analysis-5.0.3'               : 'org.ow2.asm:asm-analysis:5.0.3',
         'asm-tree-5.0.3'                   : 'org.ow2.asm:asm-tree:5.0.3',
         'commons-codec-1.6'                : 'commons-codec:commons-codec:1.6',
-        'commons-compress-1.0'             : 'org.apache.commons:commons-compress:1.8.1',
+        'commons-compress-1.0'             : 'org.apache.commons:commons-compress:1.12',
         'commons-logging-1.1.1'            : 'commons-logging:commons-logging:1.1.1',
         'easymock'                         : 'org.easymock:easymock:3.3',
         'freemarker-2.3.20'                : 'org.freemarker:freemarker:2.3.20',
