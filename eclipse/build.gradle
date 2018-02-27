@@ -62,6 +62,9 @@ def artifacts = [
         'uiautomatorviewer'   : "com.android.tools:uiautomatorviewer:$ext.baseVersion",
 
         // prebuilts
+	// Versions in the values do not necessarily match the ones in the keys
+	// of this map, but considering this build will be removed soon, that is
+	// somewhat acceptable. See b/70876982.
         'ant-glob'                         : 'com.android.tools.external:ant-glob:1.0',
         'asm-5.0.3'                        : 'org.ow2.asm:asm:5.0.3',
         'asm-analysis-5.0.3'               : 'org.ow2.asm:asm-analysis:5.0.3',
