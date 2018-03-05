@@ -62,20 +62,23 @@ def artifacts = [
         'uiautomatorviewer'   : "com.android.tools:uiautomatorviewer:$ext.baseVersion",
 
         // prebuilts
+	// Versions in the values do not necessarily match the ones in the keys
+	// of this map, but considering this build will be removed soon, that is
+	// somewhat acceptable. See b/70876982.
         'ant-glob'                         : 'com.android.tools.external:ant-glob:1.0',
         'asm-5.0.3'                        : 'org.ow2.asm:asm:5.0.3',
         'asm-analysis-5.0.3'               : 'org.ow2.asm:asm-analysis:5.0.3',
         'asm-tree-5.0.3'                   : 'org.ow2.asm:asm-tree:5.0.3',
-        'commons-codec-1.6'                : 'commons-codec:commons-codec:1.6',
+        'commons-codec-1.6'                : 'commons-codec:commons-codec:1.9',
         'commons-compress-1.0'             : 'org.apache.commons:commons-compress:1.12',
-        'commons-logging-1.1.1'            : 'commons-logging:commons-logging:1.1.1',
+        'commons-logging-1.1.1'            : 'commons-logging:commons-logging:1.2',
         'easymock'                         : 'org.easymock:easymock:3.3',
         'freemarker-2.3.20'                : 'org.freemarker:freemarker:2.3.20',
         'guava-22.0'                       : 'com.google.guava:guava:22.0',
         'host-libprotobuf-java-2.3.0-lite' : 'com.android.tools.external:libprotobuf-java-lite:2.3.0',
-        'httpclient-4.2.6'                 : 'org.apache.httpcomponents:httpclient:4.2.6',
-        'httpcore-4.2.5'                   : 'org.apache.httpcomponents:httpcore:4.2.5',
-        'httpmime-4.1'                     : 'org.apache.httpcomponents:httpmime:4.1',
+        'httpclient-4.2.6'                 : 'org.apache.httpcomponents:httpclient:4.5.2',
+        'httpcore-4.2.5'                   : 'org.apache.httpcomponents:httpcore:4.4.5',
+        'httpmime-4.1'                     : 'org.apache.httpcomponents:httpmime:4.5.2',
         'jcommon-1.0.12'                   : 'jfree:jcommon:1.0.12',
         'jfreechart-1.0.9'                 : 'jfree:jfreechart:1.0.9',
         'jfreechart-swt-1.0.9'             : 'jfree:jfreechart-swt:1.0.9',
