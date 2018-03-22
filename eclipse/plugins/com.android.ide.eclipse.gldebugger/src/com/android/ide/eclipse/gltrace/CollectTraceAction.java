@@ -56,6 +56,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.concurrent.Callable;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
@@ -340,7 +341,7 @@ public class CollectTraceAction implements IWorkbenchWindowActionDelegate {
             }
         };
         try {
-            new SimpleTimeLimiter().callWithTimeout(c, timeout, TimeUnit.SECONDS, true);
+            SimpleTimeLimiter.create(Executors.newCachedThreadPool()).callWithTimeout(c, timeout, TimeUnit.SECONDS);
         } catch (Exception e) {
             throw new RuntimeException("Timed out waiting for application to launch.");
         }
@@ -366,7 +367,7 @@ public class CollectTraceAction implements IWorkbenchWindowActionDelegate {
             }
         };
         try {
-            new SimpleTimeLimiter().callWithTimeout(c, timeout, TimeUnit.SECONDS, true);
+            SimpleTimeLimiter.create(Executors.newCachedThreadPool()).callWithTimeout(c, timeout, TimeUnit.SECONDS);
         } catch (Exception e) {
             throw new RuntimeException("Timed out waiting for running application to die.");
         }
