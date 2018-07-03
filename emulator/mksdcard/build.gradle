@@ -19,6 +19,9 @@ sources {
 
 binaries.all {
     cCompiler.args "-D_FILE_OFFSET_BITS=64"
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        linker.args "-static-libgcc"
+    }
 }
 
 sdk {
