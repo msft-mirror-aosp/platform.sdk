@@ -2,6 +2,8 @@ apply plugin: 'c'
 apply plugin: 'sdk-files'
 apply plugin: 'native-setup'
 
+import org.apache.tools.ant.taskdefs.condition.Os
+
 executables {
     mksdcard {}
 }
@@ -19,6 +21,9 @@ sources {
 
 binaries.all {
     cCompiler.args "-D_FILE_OFFSET_BITS=64"
+    if (!Os.isFamily(Os.FAMILY_MAC)) {
+        linker.args "-static-libgcc"
+    }
 }
 
 sdk {
