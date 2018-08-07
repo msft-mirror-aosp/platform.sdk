@@ -4,8 +4,10 @@ apply plugin: 'native-setup'
 
 import org.apache.tools.ant.taskdefs.condition.Os
 
-executables {
-    mksdcard {}
+model {
+    components {
+        mksdcard(NativeExecutableSpec)
+    }
 }
 
 sources {
