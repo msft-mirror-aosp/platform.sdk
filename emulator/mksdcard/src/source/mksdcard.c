@@ -63,12 +63,12 @@ static Byte  s_fat_head      [ BYTES_PER_SECTOR ];   /* first FAT sector */
 
 // For handling Unicode paths
 #ifdef _WIN32
-    #define WIDE_CHAR   wchar_t
+    #define TCHAR       wchar_t
     #define ARGC        wargc
     #define ARGV        wargv
     #define STRINGPRINT "%S"
 #else
-    #define WIDE_CHAR   char
+    #define TCHAR       char
     #define ARGC        argc
     #define ARGV        argv
     #define STRINGPRINT "%s"
@@ -232,25 +232,25 @@ static void usage (void)
 
 int  main( int argc, char**  argv )
 {
-    Wide              disk_size;
-    int               sectors_per_fat;
-    int               sectors_per_disk;
-    WIDE_CHAR*        end;
-    const WIDE_CHAR*  label = NULL;
-    FILE*             f = NULL;
+    Wide          disk_size;
+    int           sectors_per_fat;
+    int           sectors_per_disk;
+    TCHAR*        end;
+    const TCHAR*  label = NULL;
+    FILE*         f = NULL;
 
 #ifdef _WIN32
-    int          wargc;
-    WIDE_CHAR**  wargv;
-    WIDE_CHAR**  unused_environment;
-    WIDE_CHAR**  unused_startupinfo;
+    int      wargc;
+    TCHAR**  wargv;
+    TCHAR**  unused_environment;
+    TCHAR**  unused_startupinfo;
 
     __wgetmainargs(&wargc, &wargv, &unused_environment, 0, &unused_startupinfo);
 #endif
 
     for ( ; ARGC > 1 && ARGV[1][0] == '-'; ARGC--, ARGV++ )
     {
-        WIDE_CHAR*  arg = ARGV[1] + 1;
+        TCHAR*  arg = ARGV[1] + 1;
         switch (arg[0]) {
             case 'l':
                 if (arg[1] != 0)
