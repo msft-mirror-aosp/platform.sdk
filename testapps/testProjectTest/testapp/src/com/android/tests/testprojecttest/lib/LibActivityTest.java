@@ -17,8 +17,9 @@
 package com.android.tests.testprojecttest.lib;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.MediumTest;
 import android.widget.TextView;
+
+import androidx.test.filters.MediumTest;
 
 import com.android.tests.testprojecttest.app.R;
 

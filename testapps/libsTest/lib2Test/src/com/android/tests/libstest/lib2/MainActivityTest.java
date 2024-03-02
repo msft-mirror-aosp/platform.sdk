@@ -17,10 +17,9 @@
 package com.android.tests.libstest.lib2;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.suitebuilder.annotation.MediumTest;
 import android.widget.TextView;
 
-import com.android.tests.libstest.lib2.R;
+import androidx.test.filters.MediumTest;
 
 /**
  * An example of an {@link ActivityInstrumentationTestCase2} of a specific activity {@link Focus2}.
