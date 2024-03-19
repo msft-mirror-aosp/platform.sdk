@@ -36,4 +36,9 @@ java_library_host {
 
     srcs: ["src/**/*.java"],
     java_resource_dirs: ["src"],
+    target: {
+        windows: {
+            enabled: true,
+        },
+    },
 }
