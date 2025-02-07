@@ -23,7 +23,10 @@
 -dontskipnonpubliclibraryclasses
 -verbose
 
--keepattributes *Annotation*
+-keepattributes AnnotationDefault,
+                RuntimeVisibleAnnotations,
+                RuntimeVisibleParameterAnnotations,
+                RuntimeVisibleTypeAnnotations
 -keep public class com.google.vending.licensing.ILicensingService
 -keep public class com.android.vending.licensing.ILicensingService
 
